@@ -426,7 +426,11 @@ router.get('/tickets/:id', async (req, res) => {
             }
         }
 
-        res.render('tickets', { data: data })
+        if(data){
+            res.render('tickets', { data: data })
+        } else {
+            res.render('invalid')
+        }
     } else {
         res.render('invalid')
     }
@@ -434,8 +438,8 @@ router.get('/tickets/:id', async (req, res) => {
 
 })
 
-// router.get('/', async (req, res) => {
-//     res.render('index')
-// })
+router.get('/', async (req, res) => {
+    res.render('index')
+})
 
 module.exports = router;
