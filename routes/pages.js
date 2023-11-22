@@ -408,25 +408,30 @@ const { google } = require('googleapis');
 router.get('/tickets/:id', async (req, res) => {
     if (tokens.indexOf(req.params.id) > -1) {
         id = req.params.id
+        // console.log(id.split('-')[0])
+        id = id.split('-')[0]
         data = ''
 
         const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
         const sheets = google.sheets({ version: 'v4', auth });
 
-        const range = `Form Responses 1!A2:K500`
+        const range = `Form Responses 1!A2:L500`
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId: process.env.SHEET_ID,
             range
         })
 
+        // console.log(response.data.values)
+
         for (let i = 0; i < response.data.values.length; i++) {
-            if (parseInt(id) == parseInt(response.data.values[i][10])) {
-                // console.log(response.data.values[i])
+            if (parseInt(id) == parseInt(response.data.values[i][11])) {
+                console.log(response.data.values[i])
                 data = response.data.values[i]
             }
         }
+        // console.log(data)
 
-        if(data){
+        if (data) {
             res.render('tickets', { data: data })
         } else {
             res.render('invalid')
