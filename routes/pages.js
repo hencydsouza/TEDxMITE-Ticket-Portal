@@ -11,7 +11,6 @@ router.get('/tickets/:id', async (req, res) => {
         id = req.params.id
         // console.log(id.split('-')[0])
         id = id.split('-')[0]
-        console.log("Accessed by Ticket No."+id)
         data = ''
 
         const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
@@ -38,6 +37,7 @@ router.get('/tickets/:id', async (req, res) => {
         ticketNo = data[11]
 
         if (data) {
+            console.log("Accessed by "+data[1])
             res.render('tickets', { attendeeName: attendeeName,ticketType: ticketType,ticketNo:ticketNo })
         } else {
             res.render('invalid')
