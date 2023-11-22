@@ -48,29 +48,33 @@ router.get('/tickets/:id', async (req, res) => {
         miteIan = data[3]
         attendeeName = data[1]
         ticketType = ''
-        ticketNo = padNumberWithZeros(data[11], 3)
+        try {
+            ticketNo = padNumberWithZeros(data[11], 3)
+        } catch (err) {
+            ticketNo = ''
+        }
 
         // check if MITEian or not
-        if(miteIan == "Yes"){
+        if (miteIan == "Yes") {
             miteIan = 1
             // check for pass type
-            if(data[6] == "Rs. 999 Premium Ticket"){
+            if (data[6] == "Rs. 999 Premium Ticket") {
                 ticketType = 1
-            } else if(data[6] == "Rs. 799 Standard Ticket") {
+            } else if (data[6] == "Rs. 799 Standard Ticket") {
                 ticketType = 0
             }
         } else {
             miteIan = 0
-            if(data[8] == "Rs. 1099 Premium Ticket"){
+            if (data[8] == "Rs. 1099 Premium Ticket") {
                 ticketType = 1
-            } else if(data[8] == "Rs. 899 Standard Ticket") {
+            } else if (data[8] == "Rs. 899 Standard Ticket") {
                 ticketType = 0
             }
         }
 
         if (data) {
-            console.log("Accessed by "+data[1])
-            res.render('tickets', { attendeeName: attendeeName,ticketType: ticketType,ticketNo:ticketNo, miteIan:miteIan })
+            console.log("Accessed by " + data[1])
+            res.render('tickets', { attendeeName: attendeeName, ticketType: ticketType, ticketNo: ticketNo, miteIan: miteIan })
         } else {
             res.render('invalid')
         }
