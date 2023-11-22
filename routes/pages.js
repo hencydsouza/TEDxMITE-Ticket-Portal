@@ -430,9 +430,13 @@ router.get('/tickets/:id', async (req, res) => {
             }
         }
         // console.log(data)
+        console.log(data)
+        attendeeName = data[1]
+        ticketType = data[6]
+        ticketNo = data[11]
 
         if (data) {
-            res.render('tickets', { data: data })
+            res.render('tickets', { attendeeName: attendeeName,ticketType: ticketType,ticketNo:ticketNo })
         } else {
             res.render('invalid')
         }
