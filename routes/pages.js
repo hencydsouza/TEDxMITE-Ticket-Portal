@@ -430,7 +430,7 @@ router.get('/tickets/:id', async (req, res) => {
             }
         }
         // console.log(data)
-        console.log(data)
+        // console.log(data)
         attendeeName = data[1]
         ticketType = data[6]
         ticketNo = data[11]
@@ -447,8 +447,8 @@ router.get('/tickets/:id', async (req, res) => {
 
 })
 
-router.get('/', async (req, res) => {
-    res.render('index')
-})
+// router.get('/', async (req, res) => {
+//     res.render('index')
+// })
 
 module.exports = router;
