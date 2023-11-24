@@ -9,6 +9,10 @@ body {
   font-family: "Poppins";
 }
 
+.text {
+  color: red;
+}
+
 .navbar {
   background: white;
   padding: 1em;

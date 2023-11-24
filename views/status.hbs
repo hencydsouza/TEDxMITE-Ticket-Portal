@@ -1,0 +1,42 @@
+<div class="navbar">
+    <div class="container">
+        <img src="/Tedx - Logo - Black.png" alt="">
+
+        <img id="mobile-cta" class="mobile-menu" src="/menu.svg" alt="Open Navigation">
+
+        <nav>
+            <img id="mobile-exit" class="mobile-menu-exit" src="/exit.svg" alt="Close Navigation">
+
+            <ul class="secondary-nav">
+                <li class="current"><a href="https://www.instagram.com/tedx_mite" target="_blank">Instagram</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<section class="hero">
+    <div class="container">
+        <div class="left-col">
+            <h1>{{tickets}} <span class="text">Tickets Sold</span></h1>
+            <h1>{{premium}} <span class="text">Premium</span></h1>
+            <h1>{{standard}} <span class="text">Standard</span></h1>
+            <h1>&#8377;{{total}} <span class="text">Total money acquired</span></h1>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    const mobileBtn = document.getElementById('mobile-cta')
+    nav = document.querySelector('nav')
+    mobileBtnExit = document.getElementById('mobile-exit');
+
+    mobileBtn.addEventListener('click', () => {
+        nav.classList.add('menu-btn')
+    })
+
+    mobileBtnExit.addEventListener('click', () => {
+        nav.classList.remove('menu-btn')
+    })
+
+</script>

@@ -88,4 +88,47 @@ router.get('/tickets/:id', async (req, res) => {
 //     res.render('index')
 // })
 
+router.get('/status', async (req, res) => {
+
+    const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    const range = `Form Responses 1!A2:L500`
+    const response = await sheets.spreadsheets.values.get({
+        spreadsheetId: process.env.SHEET_ID,
+        range
+    })
+
+    let Premium = 0
+    let Standard = 0
+    let Total = 0
+    for (let i = 0; i < response.data.values.length; i++) {
+        if (response.data.values[i][3] == "Yes") {
+            if (response.data.values[i][6] == "Rs. 999 Premium Ticket") {
+                Premium = Premium + 1
+                Total = Total + 999
+            } else {
+                Standard = Standard + 1
+                Total = Total + 799
+            }
+        } else {
+            if (response.data.values[i][8] == "Rs. 1099 Premium Ticket") {
+                Premium = Premium + 1
+                Total = Total + 1099
+            } else if (response.data.values[i][8] == "Rs. 1099 Premium Ticket") {
+                Standard = Standard + 1
+                Total = Total + 899
+            }
+        }
+
+    }
+    // console.log(Premium)
+    // console.log(Standard)
+    // console.log(Premium + Standard)
+    // console.log(Total)
+
+
+    res.render('status', { premium: Premium, standard: Standard, tickets: (Premium + Standard), total: Total })
+})
+
 module.exports = router;
