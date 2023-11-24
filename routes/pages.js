@@ -83,7 +83,7 @@ router.get('/tickets/:id', async (req, res) => {
             }
         }
 
-        console.log(ticketLink.split('/')[5])
+        // console.log(ticketLink.split('/')[5])
 
         if (data) {
             console.log("Accessed by " + data[1])
