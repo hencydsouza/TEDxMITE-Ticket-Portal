@@ -14,6 +14,14 @@ body {
   font-size: 0.7em;
 }
 
+.ticket {
+  margin: 2em 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
 .navbar {
   background: white;
   padding: 1em;

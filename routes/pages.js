@@ -48,6 +48,7 @@ router.get('/tickets/:id', async (req, res) => {
         miteIan = data[3]
         attendeeName = data[1]
         ticketType = ''
+        ticketLink = ''
         try {
             ticketNo = padNumberWithZeros(data[11], 3)
         } catch (err) {
@@ -60,21 +61,33 @@ router.get('/tickets/:id', async (req, res) => {
             // check for pass type
             if (data[6] == "Rs. 999 Premium Ticket") {
                 ticketType = 1
+                let link = require('../public/Premium.json');
+                ticketLink = link['Premium_No.' + ticketNo + '.jpg']
+                // console.log(ticketLink)
             } else if (data[6] == "Rs. 799 Standard Ticket") {
                 ticketType = 0
+                let link = require('../public/Standard.json');
+                ticketLink = link['Standard_No.' + ticketNo + '.jpg']
+                // console.log(ticketLink)
             }
         } else {
             miteIan = 0
             if (data[8] == "Rs. 1099 Premium Ticket") {
                 ticketType = 1
+                let link = require('../public/Premium.json');
+                ticketLink = link['Premium_No.' + ticketNo + '.jpg']
             } else if (data[8] == "Rs. 899 Standard Ticket") {
                 ticketType = 0
+                let link = require('../public/Standard.json');
+                ticketLink = link['Standard_No.' + ticketNo + '.jpg']
             }
         }
 
+        console.log(ticketLink.split('/')[5])
+
         if (data) {
             console.log("Accessed by " + data[1])
-            res.render('tickets', { attendeeName: attendeeName, ticketType: ticketType, ticketNo: ticketNo, miteIan: miteIan })
+            res.render('tickets', { attendeeName: attendeeName, ticketType: ticketType, ticketNo: ticketNo, miteIan: miteIan, ticket_image_id: (ticketLink.split('/')[5]) })
         } else {
             res.render('invalid')
         }
@@ -122,10 +135,7 @@ router.get('/status', async (req, res) => {
         }
 
     }
-    // console.log(Premium)
-    // console.log(Standard)
-    // console.log(Premium + Standard)
-    // console.log(Total)
+    console.log("Status page accessed")
 
 
     res.render('status', { premium: Premium, standard: Standard, tickets: (Premium + Standard), total: Total })
