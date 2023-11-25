@@ -101,6 +101,37 @@ router.get('/tickets/:id', async (req, res) => {
 //     res.render('index')
 // })
 
+router.get('/check', async (req, res) => {
+    const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    const range = `Form Responses 1!A2:L500`
+    const response = await sheets.spreadsheets.values.get({
+        spreadsheetId: process.env.SHEET_ID,
+        range
+    })
+
+    let numbers = []
+    for (let i = 0; i < response.data.values.length; i++) {
+        value = response.data.values[i][11]
+        if (value)
+            numbers.push(value)
+    }
+
+    const duplicates = numbers.filter((item, index) => index !== numbers.indexOf(item));
+    console.log(duplicates);
+
+    let message = ''
+    if (duplicates.length != 0) {
+        message = "Duplicates found: " + duplicates.toString()
+    } else {
+        message = "All OK"
+    }
+
+    // console.log(response.data.values)
+    res.render('check', { message: message })
+})
+
 router.get('/status', async (req, res) => {
 
     const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
