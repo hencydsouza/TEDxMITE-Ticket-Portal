@@ -119,7 +119,7 @@ router.get('/check', async (req, res) => {
     }
 
     const duplicates = numbers.filter((item, index) => index !== numbers.indexOf(item));
-    console.log(duplicates);
+    // console.log(duplicates);
 
     let message = ''
     if (duplicates.length != 0) {
