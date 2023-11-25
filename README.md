@@ -1,1 +1,0 @@
-# TEDxMITE-Ticket-Portal
