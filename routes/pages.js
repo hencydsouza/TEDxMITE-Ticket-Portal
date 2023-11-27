@@ -148,12 +148,17 @@ router.get('/status', async (req, res) => {
     let Premium = 0
     let Standard = 0
     let Total = 0
+    let count = 0
     for (let i = 0; i < response.data.values.length; i++) {
+        if (response.data.values[i][1]){
+            count++
+            // console.log(response.data.values[i][1])
+        }
         if (response.data.values[i][3] == "Yes") {
             if (response.data.values[i][6] == "Rs. 999 Premium Ticket" && response.data.values[i][0] != "complimentary ") {
                 Premium = Premium + 1
                 Total = Total + 999
-            } else {
+            } else if (response.data.values[i][6] == "Rs. 799 Standard Ticket" && response.data.values[i][0] != "complimentary ") {
                 Standard = Standard + 1
                 Total = Total + 799
             }
@@ -171,7 +176,7 @@ router.get('/status', async (req, res) => {
     console.log("Status page accessed")
 
     // test
-    res.render('status', { premium: Premium, standard: Standard, tickets: (Premium + Standard), total: Total })
+    res.render('status', { premium: Premium, standard: Standard, tickets: (Premium + Standard), total: Total, count: count })
 })
 
 module.exports = router;
