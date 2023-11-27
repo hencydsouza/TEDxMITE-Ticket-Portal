@@ -143,12 +143,14 @@ router.get('/status', async (req, res) => {
         range
     })
 
+    // console.log(response.data.values)
+
     let Premium = 0
     let Standard = 0
     let Total = 0
     for (let i = 0; i < response.data.values.length; i++) {
         if (response.data.values[i][3] == "Yes") {
-            if (response.data.values[i][6] == "Rs. 999 Premium Ticket") {
+            if (response.data.values[i][6] == "Rs. 999 Premium Ticket" && response.data.values[i][0] != "complimentary ") {
                 Premium = Premium + 1
                 Total = Total + 999
             } else {
@@ -156,10 +158,10 @@ router.get('/status', async (req, res) => {
                 Total = Total + 799
             }
         } else {
-            if (response.data.values[i][8] == "Rs. 1099 Premium Ticket") {
+            if (response.data.values[i][8] == "Rs. 1099 Premium Ticket" && response.data.values[i][0] != "complimentary ") {
                 Premium = Premium + 1
                 Total = Total + 1099
-            } else if (response.data.values[i][8] == "Rs. 1099 Premium Ticket") {
+            } else if (response.data.values[i][8] == "Rs. 1099 Premium Ticket" && response.data.values[i][0] != "complimentary ") {
                 Standard = Standard + 1
                 Total = Total + 899
             }
