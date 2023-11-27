@@ -168,7 +168,7 @@ router.get('/status', async (req, res) => {
     }
     console.log("Status page accessed")
 
-
+    // test
     res.render('status', { premium: Premium, standard: Standard, tickets: (Premium + Standard), total: Total })
 })
 
