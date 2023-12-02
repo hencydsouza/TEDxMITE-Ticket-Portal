@@ -16,7 +16,16 @@ body {
 }
 
 .ticket {
-    margin: 2em 0;
+    margin: 1em 0;
+    margin-bottom: 0.3em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.group {
+    margin: 0.3em 0;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -53,6 +62,14 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+.bottom-text {
+    font-size: 0.8em;
+}
+
+.aln {
+    text-align: right;
 }
 
 section {
@@ -199,6 +216,10 @@ nav {
 }
 
 @media only screen and (min-width: 1080px) {
+    .bottom-text {
+        font-size: 1.2em;
+    }
+
     .container {
         width: 100%;
         margin: 0 auto;
@@ -214,7 +235,7 @@ nav {
         text-align: left;
 
         .left-col {
-            margin: 3em 3em 0 5em;
+            // margin: 3em 3em 0 5em;
 
             h1 {
                 font-size: 3em;
