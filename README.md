@@ -56,13 +56,12 @@ Pictures of printed tickets each with a unique qr code. Each of these tickets is
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/hencydsouza/TEDxMITE-Ticket-Portal
 ```
-
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd TEDxMITE-Ticket-Portal
 ```
 
 Install dependencies
