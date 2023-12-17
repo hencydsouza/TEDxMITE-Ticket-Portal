@@ -34,7 +34,11 @@ Example for someone who has bought a Strandard Pass
 
 Screenshot of the google sheet
 
-![ticket page](./screenshots/sheet.png)
+![sheet](./screenshots/sheet.png)
+
+Ticket number column screenshot. each ticket has to be manually assigned in this column for the application to work 
+
+![column](./screenshots/assigning.png)
 
 ## Scan the QR code to test the application
 Pictures of printed tickets each with a unique qr code. Each of these tickets is a digital copy of the printed tickets and thus perform the same function
