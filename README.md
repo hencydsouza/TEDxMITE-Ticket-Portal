@@ -37,7 +37,7 @@ Screenshot of the google sheet
 ![ticket page](./screenshots/sheet.png)
 
 ## Scan the QR code to test the application
-Pictures of printed tickets each with a unique qr code. 
+Pictures of printed tickets each with a unique qr code. Each of these tickets is a digital copy of the printed tickets and thus perform the same function
 
 ![Premium Pass](./screenshots/Ticket_No.001.jpg)
 
