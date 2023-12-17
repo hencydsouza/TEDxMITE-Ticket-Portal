@@ -29,3 +29,6 @@ Handlebars.registerHelper('isEqual', function (value1, value2) {
     return value1 == value2;
 });
 
+Handlebars.registerHelper('splitUrl', function (title) {
+    return title.toString().split("tickets/")[1].split("-")[0];
+});

@@ -1,2 +1,22 @@
-<h1>homepage</h1>
-{{data}}
+<div class="navbar">
+    <div class="container">
+        <img src="/Tedx - Logo - Black.png" alt="">
+
+        <img id="mobile-cta" class="mobile-menu" src="/menu.svg" alt="Open Navigation">
+
+        <nav>
+            <img id="mobile-exit" class="mobile-menu-exit" src="/exit.svg" alt="Close Navigation">
+
+            <ul class="secondary-nav">
+                <li class="current"><a href="https://www.instagram.com/tedx_mite" target="_blank">Instagram</a></li>
+                <li class="current"><a href="https://tedxmite.netlify.app/" target="_blank">Website</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<section class="hero" style="padding-top: 1em;">
+    {{#each urls}}
+        <a href="{{this}}" style="display: block;">Ticket No.{{splitUrl this}}</a>
+    {{/each}}
+</section>

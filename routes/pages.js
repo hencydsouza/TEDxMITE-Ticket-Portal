@@ -97,9 +97,34 @@ router.get('/tickets/:id', async (req, res) => {
 
 })
 
-// router.get('/', async (req, res) => {
-//     res.render('index')
-// })
+router.get('/tickets', async (req, res) => {
+    const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    const range = `Form Responses 1!A2:L500`
+    const response = await sheets.spreadsheets.values.get({
+        spreadsheetId: process.env.SHEET_ID,
+        range
+    })
+
+    // data = response.data.values[1]
+    let numbers = []
+    let users = []
+    for (let i = 0; i < response.data.values.length; i++) {
+        value = response.data.values[i][11]
+        if (value){
+            numbers.push(tokens[i-1])
+            users.push(response.data.values[i][1])
+        }
+    }
+
+    let urls = []
+    for (let i = 0;i<numbers.length;i++){
+        urls[i] = process.env.URL+numbers[i]
+    }
+
+    res.render('index', { numbers: numbers, users:users, urls: urls })
+})
 
 router.get('/check', async (req, res) => {
     const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
@@ -150,7 +175,7 @@ router.get('/status', async (req, res) => {
     let Total = 0
     let count = 0
     for (let i = 0; i < response.data.values.length; i++) {
-        if (response.data.values[i][1]){
+        if (response.data.values[i][1]) {
             count++
             // console.log(response.data.values[i][1])
         }
