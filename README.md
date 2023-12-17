@@ -1,5 +1,6 @@
 
 # TEDxMITE Ticket Portal
+![TEDxMITE-Ticket-Portal](https://socialify.git.ci/hencydsouza/TEDxMITE-Ticket-Portal/image?language=1&name=1&owner=1&theme=Dark)
 
 A web application built to use as a ticket portal for TEDxMITE 2023. It is built using NodeJS, ExpressJS and Handlebars.
 The project is linked to a google sheet which is used as  a database.
